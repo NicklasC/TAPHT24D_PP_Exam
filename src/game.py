@@ -3,12 +3,11 @@ from .player import Player
 from . import pickups
 
 
-
-player = Player(2, 1)
 score = 0
 inventory = []
 
 g = Grid()
+player = Player(g.width // 2, g.height // 2)
 g.set_player(player)
 g.make_walls()
 pickups.randomize(g)
