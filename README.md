@@ -15,3 +15,4 @@ Tips! Du kan spara denna rad som en "run configuration" i PyCharm.
 2. Ändra i sektionen "run" så det står `module` i stället för `script`
 3. Skriv `src.game` i rutan till höger om `module`
 
+ 
