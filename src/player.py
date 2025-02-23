@@ -14,7 +14,10 @@ class Player:
         self.pos_y += dy
 
     def can_move(self, x, y, grid):
-        return True
-        #TODO: returnera True om det inte står något i vägen
-
-
+        potential_x = self.pos_x + x
+        potential_y = self.pos_y + y
+        if grid.get(potential_x, potential_y) == grid.wall:
+            print("I cannot go there, there is a wall in the way!")
+            return False
+        else:
+            return True
