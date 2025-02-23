@@ -16,7 +16,7 @@ command = "a"
 while not command.casefold() in ["q", "x"]:
     g.print_status(score)
 
-    command = input("Use WASD to move, Q/X to quit. ")
+    command = input("Use WASD to move, I for inventory, Q/X to quit. ")
     command = command.casefold()[:1]
 
     player_moved = False
@@ -42,12 +42,23 @@ while not command.casefold() in ["q", "x"]:
         player.move(1, 0)
         player_moved = True
 
+    if command == "i":
+        if player.inventory_is_empty():
+            print("Inventory is empty.")
+        else:
+            print("Inventory:")
+            for item in player.get_inventory_items():
+                print(f"- {item}")
+
     if isinstance(maybe_item, pickups.Item):
         # we found something
         score += maybe_item.value
         print(f"You found a {maybe_item.name}, +{maybe_item.value} points.")
-        # g.set(player.pos_x, player.pos_y, g.empty)
         g.clear(player.pos_x, player.pos_y)
+        # Add item to inventory
+        player.add_item(maybe_item.name)
+
+
 
 # Hit kommer vi när while-loopen slutar
 print("Thank you for playing!")
