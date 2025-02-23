@@ -6,6 +6,9 @@ class Item:
         self.value = value
         self.symbol = symbol
 
+        if self.name in {'apple','strawberry','watermelon'}:
+            self.value = 20
+
     def __str__(self):
         return self.symbol
 
@@ -16,7 +19,7 @@ pickups = [Item("carrot"), Item("apple"), Item("strawberry"), Item("cherry"), It
 def randomize(grid):
     for item in pickups:
         while True:
-            # slumpa en position tills vi hittar en som är ledig
+            # slumpa en position tills vi hittar en som är ledigw
             x = grid.get_random_x()
             y = grid.get_random_y()
             if grid.is_empty(x, y):
