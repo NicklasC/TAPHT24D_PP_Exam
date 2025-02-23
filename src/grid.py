@@ -53,7 +53,7 @@ class Grid:
         print(f"You have {score} points.")
         print(game_grid)
 
-    def make_walls(self):
+    def make_outer_walls(self):
         """Skapa väggar runt hela spelplanen"""
         for i in range(self.height):
             self.set(0, i, self.wall)
@@ -62,6 +62,16 @@ class Grid:
         for j in range(1, self.width - 1):
             self.set(j, 0, self.wall)
             self.set(j, self.height - 1, self.wall)
+
+    def make_vertical_wall1(self):
+        for i in range(3,self.height-5):
+            self.set(7, i, self.wall)
+
+    def make_horizontal_wall1(self):
+        for i in range(7,self.width-20):
+            self.set(i, 7, self.wall)
+
+
 
     # Används i filen pickups.py
     def get_random_x(self):

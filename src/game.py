@@ -8,7 +8,9 @@ inventory = []
 g = Grid()
 player = Player(g.width // 2, g.height // 2)
 g.set_player(player)
-g.make_walls()
+g.make_outer_walls()
+g.make_vertical_wall1()
+g.make_horizontal_wall1()
 pickups.randomize(g)
 
 command = "a"
