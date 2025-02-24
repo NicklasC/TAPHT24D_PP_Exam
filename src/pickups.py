@@ -8,12 +8,14 @@ class Item:
 
         if self.name in {'apple','strawberry','watermelon'}:
             self.value = 20
+        if self.name == 'Trap':
+            self.value = -10
 
     def __str__(self):
         return self.symbol
 
 
-pickups = [Item("carrot"), Item("apple"), Item("strawberry"), Item("cherry"), Item("watermelon"), Item("radish"), Item("cucumber"), Item("meatball")]
+pickups = [Item("carrot"), Item("apple"), Item("strawberry"), Item("cherry"), Item("watermelon"), Item("radish"), Item("cucumber"), Item("meatball"), Item("Trap")]
 
 
 def randomize(grid):

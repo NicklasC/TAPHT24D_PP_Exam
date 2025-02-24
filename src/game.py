@@ -64,10 +64,13 @@ while not command.casefold() in ["q", "x"]:
     if isinstance(maybe_item, pickups.Item):
         # we found something
         score += maybe_item.value
-        print(f"You found a {maybe_item.name}, +{maybe_item.value} points.")
-        g.clear(player.pos_x, player.pos_y)
-        # Add item to inventory
-        player.add_item(maybe_item.name)
+        if maybe_item.name == "Trap":
+            print(f"You stepped on a trap! You lost {maybe_item.value} points.")
+        else:
+            print(f"You found a {maybe_item.name}, +{maybe_item.value} points.")
+            g.clear(player.pos_x, player.pos_y)
+            # Add item to inventory
+            player.add_item(maybe_item.name)
 
 # Hit kommer vi när while-loopen slutar
 print("Thank you for playing!")
