@@ -15,6 +15,7 @@ pickups.randomize(g)
 
 command = "a"
 
+
 def apply_floor_is_lava(score):
     return score - 1
 
@@ -63,10 +64,15 @@ while not command.casefold() in ["q", "x"]:
 
     if isinstance(maybe_item, pickups.Item):
         # we found something
-        score += maybe_item.value
-        if maybe_item.name == "Trap":
+
+        if maybe_item.name == "trap":
             print(f"You stepped on a trap! You lost {maybe_item.value} points.")
+        elif maybe_item.name == "showel":
+            print(f"You found a showel! You can use it go through a wall..")
+            g.clear(player.pos_x, player.pos_y)
+            player.add_item(maybe_item.name)
         else:
+            score += maybe_item.value
             print(f"You found a {maybe_item.name}, +{maybe_item.value} points.")
             g.clear(player.pos_x, player.pos_y)
             # Add item to inventory
