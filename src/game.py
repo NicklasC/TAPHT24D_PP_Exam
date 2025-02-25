@@ -3,6 +3,7 @@ from .player import Player
 from . import pickups
 
 score = 0
+number_of_turns = 0
 inventory = []
 
 g = Grid()
@@ -24,7 +25,7 @@ def apply_floor_is_lava(score):
 while not command.casefold() in ["q", "x"]:
     g.print_status(score)
 
-    command = input("Use WASD to move, I for inventory, Q/X to quit. ")
+    command = input(f"Use WASD to move, I for inventory, Q/X to quit. Turn number:{number_of_turns}")
     command = command.casefold()[:1]
 
     player_moved = False
@@ -35,24 +36,28 @@ while not command.casefold() in ["q", "x"]:
         player.move(0, -1)
         player_moved = True
         score = apply_floor_is_lava(score)
+        number_of_turns += 1
 
     if command == "s" and player.can_move(0, +1, g):  # move down
         maybe_item = g.get(player.pos_x, player.pos_y + 1)
         player.move(0, +1)
         player_moved = True
         score = apply_floor_is_lava(score)
+        number_of_turns += 1
 
     if command == "a" and player.can_move(-1, 0, g):  # move left
         maybe_item = g.get(player.pos_x - 1, player.pos_y)
         player.move(-1, 0)
         player_moved = True
         score = apply_floor_is_lava(score)
+        number_of_turns += 1
 
     if command == "d" and player.can_move(1, 0, g):  # move right
         maybe_item = g.get(player.pos_x + 1, player.pos_y)
         player.move(1, 0)
         player_moved = True
         score = apply_floor_is_lava(score)
+        number_of_turns += 1
 
     if command == "i":
         if player.inventory_is_empty():
@@ -89,6 +94,8 @@ while not command.casefold() in ["q", "x"]:
             g.clear(player.pos_x, player.pos_y)
             # Add item to inventory
             player.add_item(maybe_item.name)
-
+    if number_of_turns % 25 == 0:
+        print(f"You have played for {number_of_turns} turns... and a new item emerges!")
+        pickups.add_random_item(g)
 # Hit kommer vi när while-loopen slutar
 print("Thank you for playing!")

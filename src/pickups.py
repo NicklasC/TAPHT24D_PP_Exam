@@ -1,3 +1,6 @@
+from random import Random
+
+
 class Item:
     """Representerar saker man kan plocka upp."""
 
@@ -18,8 +21,16 @@ class Item:
 
 
 pickups = [Item("carrot"), Item("apple"), Item("strawberry"), Item("cherry"), Item("watermelon"), Item("radish"),
-           Item("cucumber"), Item("meatball"), Item("trap"), Item("showel"), Item("key"),Item("treasure")]
+           Item("cucumber"), Item("meatball"), Item("trap"), Item("showel"), Item("key"), Item("treasure")]
 
+
+def add_random_item(grid):
+    while True:
+        x = grid.get_random_x()
+        y = grid.get_random_y()
+        if grid.is_empty(x, y):
+            grid.set(x, y, Random().choice(pickups))
+            break
 
 def randomize(grid):
     for item in pickups:
