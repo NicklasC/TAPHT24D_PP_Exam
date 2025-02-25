@@ -31,6 +31,12 @@ class Player:
         else:
             return True
 
+    def has_key(self):
+        if self.__inventory.item_exists("key") == True:
+            return True
+        else:
+            return False
+
     def has_showel(self):
         if self.__inventory.item_exists("showel") == True:
             return True

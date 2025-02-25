@@ -71,6 +71,18 @@ while not command.casefold() in ["q", "x"]:
             print(f"You found a showel! You can use it go through a wall..")
             g.clear(player.pos_x, player.pos_y)
             player.add_item(maybe_item.name)
+        elif maybe_item.name == "key":
+            print(f"You found a key! Now if there are any chests around...")
+            g.clear(player.pos_x, player.pos_y)
+            player.add_item(maybe_item.name)
+        elif maybe_item.name == "treasure" and player.has_key():
+            print("You found a treasure! You use your key and unlock it... and find a lot of goodies!")
+            g.clear(player.pos_x, player.pos_y)
+            player.add_item(maybe_item.name)
+            player.remove_item("key")
+            score += maybe_item.value
+        elif maybe_item.name == "treasure" and player.has_key()==False:
+            print("You found a treasure! But you also need a key... get back here when you find it.")
         else:
             score += maybe_item.value
             print(f"You found a {maybe_item.name}, +{maybe_item.value} points.")
