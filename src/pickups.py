@@ -21,7 +21,7 @@ class Item:
 
 
 pickups = [Item("carrot"), Item("apple"), Item("strawberry"), Item("cherry"), Item("watermelon"), Item("radish"),
-           Item("cucumber"), Item("meatball"), Item("trap"), Item("showel"), Item("key"), Item("treasure")]
+           Item("cucumber"), Item("meatball"), Item("trap"), Item("showel",symbol="⛏"), Item("key",symbol="🗝"), Item("treasure",symbol="🏆")]
 
 
 def add_random_item(grid):
