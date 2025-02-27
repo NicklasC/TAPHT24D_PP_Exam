@@ -94,7 +94,7 @@ while not command.casefold() in ["q", "x"]:
             g.clear(player.pos_x, player.pos_y)
             # Add item to inventory
             player.add_item(maybe_item.name)
-    if number_of_turns % 25 == 0:
+    if number_of_turns > 0 and number_of_turns % 25 == 0 and command != "i":
         print(f"You have played for {number_of_turns} turns... and a new item emerges!")
         pickups.add_random_item(g)
 # Hit kommer vi när while-loopen slutar

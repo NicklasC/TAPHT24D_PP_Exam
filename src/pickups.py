@@ -1,13 +1,17 @@
 from random import Random
 
 
+
+
+
 class Item:
     """Representerar saker man kan plocka upp."""
 
-    def __init__(self, name, value=10, symbol="?"):
+    def __init__(self, name, value=10, symbol="?",from_start=False):
         self.name = name
         self.value = value
         self.symbol = symbol
+        self.from_start = from_start
 
         if self.name in {'apple', 'strawberry', 'watermelon'}:
             self.value = 20
@@ -19,9 +23,14 @@ class Item:
     def __str__(self):
         return self.symbol
 
+def set_initial_pickups():
+    item_names = [
+        "carrot", "apple", "strawberry", "cherry", "watermelon",
+        "radish", "cucumber", "meatball", "trap", "showel", "key", "treasure"
+    ]
+    return [Item(name, from_start=True) for name in item_names]
 
-pickups = [Item("carrot"), Item("apple"), Item("strawberry"), Item("cherry"), Item("watermelon"), Item("radish"),
-           Item("cucumber"), Item("meatball"), Item("trap"), Item("showel",symbol="⛏"), Item("key",symbol="🗝"), Item("treasure",symbol="🏆")]
+pickups = set_initial_pickups()
 
 
 def add_random_item(grid):
@@ -29,7 +38,9 @@ def add_random_item(grid):
         x = grid.get_random_x()
         y = grid.get_random_y()
         if grid.is_empty(x, y):
-            grid.set(x, y, Random().choice(pickups))
+            new_item = Random().choice(pickups)
+            new_item.from_start = False
+            grid.set(x, y, new_item)
             break
 
 def randomize(grid):
