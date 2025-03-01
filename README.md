@@ -1,5 +1,7 @@
 # Examination
 
+# Lösning för Nicklas Carlsson
+
 Individuell examinationsuppgift i kursen Programmering med Python.
 
 Börja läs igenom game.py - det är där projektet startas.
