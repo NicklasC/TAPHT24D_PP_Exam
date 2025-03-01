@@ -1,13 +1,11 @@
 from random import Random
-
-
-
+from venv import create
 
 
 class Item:
     """Representerar saker man kan plocka upp."""
 
-    def __init__(self, name, value=10, symbol="?",from_start=False):
+    def __init__(self, name, value=10, symbol="?", from_start=False):
         self.name = name
         self.value = value
         self.symbol = symbol
@@ -23,6 +21,7 @@ class Item:
     def __str__(self):
         return self.symbol
 
+
 def set_initial_pickups():
     item_names = [
         "carrot", "apple", "strawberry", "cherry", "watermelon",
@@ -30,25 +29,37 @@ def set_initial_pickups():
     ]
     return [Item(name, from_start=True) for name in item_names]
 
+
+def create_random_fruit_or_vegetable():
+    item_names = "carrot", "apple", "strawberry", "cherry", "watermelon", "radish", "cucumber"
+    return Item(Random().choice(item_names))
+
+def create_exit():
+    return Item("exit",symbol="E")
+
 pickups = set_initial_pickups()
 
 
-def add_random_item(grid):
+def add_random_item(grid,item_type):
+    x,y = get_empty_random_coordinates(grid)
+    if item_type == "fruit_or_vegetable":
+        item = create_random_fruit_or_vegetable()
+    elif item_type == "exit":
+        item = create_exit()
+    else:
+        raise ValueError(f"function add_random_item: Item '{item_type}' not implemented.. exiting program")
+    grid.set(x, y, item)
+
+
+def get_empty_random_coordinates(grid):
     while True:
         x = grid.get_random_x()
         y = grid.get_random_y()
         if grid.is_empty(x, y):
-            new_item = Random().choice(pickups)
-            new_item.from_start = False
-            grid.set(x, y, new_item)
-            break
+            return x, y
 
-def randomize(grid):
+#Refactored initial randomize. Created get_empty_random_coordinates instead as that functionality was needed in add_random_item.
+def place_initial_pickups(grid):
     for item in pickups:
-        while True:
-            # slumpa en position tills vi hittar en som är ledigw
-            x = grid.get_random_x()
-            y = grid.get_random_y()
-            if grid.is_empty(x, y):
-                grid.set(x, y, item)
-                break  # avbryt while-loopen, fortsätt med nästa varv i for-loopen
+        x,y = get_empty_random_coordinates(grid)
+        grid.set(x, y, item)

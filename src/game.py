@@ -12,7 +12,7 @@ g.set_player(player)
 g.make_outer_walls()
 g.make_vertical_wall1()
 g.make_horizontal_wall1()
-pickups.randomize(g)
+pickups.place_initial_pickups(g)
 
 command = "a"
 
@@ -96,6 +96,7 @@ while not command.casefold() in ["q", "x"]:
             player.add_item(maybe_item.name)
     if number_of_turns > 0 and number_of_turns % 25 == 0 and command != "i":
         print(f"You have played for {number_of_turns} turns... and a new item emerges!")
-        pickups.add_random_item(g)
+        pickups.add_random_item(g,"fruit_or_vegetable")
+        #pickups.add_random_fruit_or_vegetable(g)
 # Hit kommer vi när while-loopen slutar
 print("Thank you for playing!")
