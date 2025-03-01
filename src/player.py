@@ -43,6 +43,12 @@ class Player:
         else:
             return False
 
+    def has_treasure(self):
+        if self.__inventory.item_exists("treasure") == True:
+            return True
+        else:
+            return False
+
     def remove_item(self, item):
         self.__inventory.remove(item)
 
