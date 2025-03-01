@@ -24,6 +24,8 @@ class Player:
             print("I cannot go there, there is a wall in the way!")
             return False
         elif grid.get(potential_x, potential_y) == grid.wall and self.has_item("showel") == True:
+            #TODO: Ask PO about how this should be handled. Currently, passing outer walls can cause the program to
+            # raise error. Should only the inner walls be passable? Should we raise a text saying "You cannot leave the grid" or similar?
             print("You ran into a wall, but use your showel to get through! It only works once though...")
             grid.clear(potential_x, potential_y)
             self.__inventory.remove("showel")
