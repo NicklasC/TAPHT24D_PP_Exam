@@ -35,18 +35,17 @@ def create_random_fruit_or_vegetable():
     return Item(Random().choice(item_names))
 
 
+pickups = set_initial_pickups()
 def number_of_initial_pickups():
-    return len(pickups) - 1
+    # Variable below is needed in order to enable Exits
+    return len(pickups) - 1  # -1 for trap
 
 
 def create_exit():
     return Item("exit", symbol="E")
 
 
-pickups = set_initial_pickups()
 
-# Variable below is needed in order to enable Exits
-number_of_initial_pickups = len(pickups) - 1  # -1 for trap
 
 
 def is_original_item(item):
@@ -70,6 +69,7 @@ def get_empty_random_coordinates(grid):
         y = grid.get_random_y()
         if grid.is_empty(x, y):
             return x, y
+
 
 # Refactored initial randomize. Created get_empty_random_coordinates instead as that functionality was needed in add_random_item.
 def place_initial_pickups(grid):

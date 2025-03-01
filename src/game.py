@@ -23,7 +23,7 @@ def apply_floor_is_lava(score):
 
 
 def maybe_increase_visited_original_items_counter(item_to_check: pickups.Item):
-    # Decision: Implemented this using global. Using a parameter instead would mean better testability though but..
+    # Decision: Implemented this using global. Using a parameter instead would mean better testability though but...
     # There will be only one picked_up_initial_items variable. This can be discussed though...
     global visited_original_items
     if pickups.is_original_item(item_to_check):
@@ -100,9 +100,9 @@ while not command.casefold() in ["q", "x"]:
             score += maybe_item.value
         elif maybe_item.name == "treasure" and player.has_key() == False:
             print("You found a treasure! But you also need a key... get back here when you find it.")
-        elif maybe_item.name == "exit" and visited_original_items < pickups.number_of_initial_pickups:
+        elif maybe_item.name == "exit" and visited_original_items < pickups.number_of_initial_pickups():
             print("You found the exit... but you cannot exit until you have picked up / visited all original items")
-        elif maybe_item.name == "exit" and visited_original_items == pickups.number_of_initial_pickups:
+        elif maybe_item.name == "exit" and visited_original_items == pickups.number_of_initial_pickups():
             print(f"You found the exit and have collected all original items! You won with the score {score}!")
             exit(0)
         else:
