@@ -20,10 +20,10 @@ class Player:
     def can_move(self, x, y, grid):
         potential_x = self.pos_x + x
         potential_y = self.pos_y + y
-        if grid.get(potential_x, potential_y) == grid.wall and self.has_showel() == False:
+        if grid.get(potential_x, potential_y) == grid.wall and self.has_item("showel") == False:
             print("I cannot go there, there is a wall in the way!")
             return False
-        elif grid.get(potential_x, potential_y) == grid.wall and self.has_showel() == True:
+        elif grid.get(potential_x, potential_y) == grid.wall and self.has_item("showel") == True:
             print("You ran into a wall, but use your showel to get through! It only works once though...")
             grid.clear(potential_x, potential_y)
             self.__inventory.remove("showel")
@@ -31,20 +31,8 @@ class Player:
         else:
             return True
 
-    def has_key(self):
-        if self.__inventory.item_exists("key") == True:
-            return True
-        else:
-            return False
-
-    def has_showel(self):
-        if self.__inventory.item_exists("showel") == True:
-            return True
-        else:
-            return False
-
-    def has_treasure(self):
-        if self.__inventory.item_exists("treasure") == True:
+    def has_item(self, item):
+        if self.__inventory.item_exists(item) == True:
             return True
         else:
             return False

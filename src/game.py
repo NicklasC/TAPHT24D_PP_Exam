@@ -91,14 +91,14 @@ while not command.casefold() in ["q", "x"]:
             g.clear(player.pos_x, player.pos_y)
             player.add_item(maybe_item.name)
             maybe_increase_visited_original_items_counter(maybe_item)
-        elif maybe_item.name == "treasure" and player.has_key():
+        elif maybe_item.name == "treasure" and player.has_item("key"):
             print("You found a treasure! You use your key and unlock it... and find a lot of goodies!")
             g.clear(player.pos_x, player.pos_y)
             player.add_item(maybe_item.name)
             player.remove_item("key")
             maybe_increase_visited_original_items_counter(maybe_item)
             score += maybe_item.value
-        elif maybe_item.name == "treasure" and player.has_key() == False:
+        elif maybe_item.name == "treasure" and player.has_item("key") == False:
             print("You found a treasure! But you also need a key... get back here when you find it.")
         elif maybe_item.name == "exit" and visited_original_items < pickups.number_of_initial_pickups():
             print("You found the exit... but you cannot exit until you have picked up / visited all original items")

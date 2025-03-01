@@ -29,10 +29,6 @@ class Grid:
         """Ta bort item från position"""
         self.set(x, y, self.empty)
 
-    @staticmethod
-    def clear_terminal():
-        print("\n" * 100)
-
     def __str__(self):
         """Gör så att vi kan skriva ut spelplanen med print(grid)"""
         xs = ""

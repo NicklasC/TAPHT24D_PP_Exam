@@ -30,12 +30,14 @@ def set_initial_pickups():
     return [Item(name, from_start=True) for name in item_names]
 
 
+pickups = set_initial_pickups()
+
+
 def create_random_fruit_or_vegetable():
     item_names = "carrot", "apple", "strawberry", "cherry", "watermelon", "radish", "cucumber"
     return Item(Random().choice(item_names))
 
 
-pickups = set_initial_pickups()
 def number_of_initial_pickups():
     # Variable below is needed in order to enable Exits
     return len(pickups) - 1  # -1 for trap
@@ -43,9 +45,6 @@ def number_of_initial_pickups():
 
 def create_exit():
     return Item("exit", symbol="E")
-
-
-
 
 
 def is_original_item(item):
